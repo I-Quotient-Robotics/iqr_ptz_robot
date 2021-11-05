@@ -1,13 +1,9 @@
 # iqr_ptz_robot
-jackal + imu + zed2 + d435 + vlp16 + livox
+jackal + imu + ptz + gps + hokuyo
 
 ## DEPEND
 - [JACKAL ROS DRIVER](https://github.com/jackal)
 - [IMU ROS DRIVER](https://github.com/I-Quotient-Robotics/jy901_driver)
-- [ZED2 ROS DRIVER](https://github.com/stereolabs/zed-ros-wrapper)
-- [D435 ROS DRIVER](https://github.com/IntelRealSense/realsense-ros)
-- [VLP16 ROS DRIVER](https://github.com/ros-drivers/velodyne)
-- [LIVOX ROS DRIVER](https://github.com/Livox-SDK/livox_ros_driver)
 
 ## How to use
 - compile & environment setup
