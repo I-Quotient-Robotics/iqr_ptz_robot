@@ -1,0 +1,6 @@
+KERNEL=="ttyACM*", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5740", MODE:="0777", SYMLINK+="jackal"
+KERNEL=="ttyUSB*", ATTRS{idVendor}=="067b", ATTRS{idProduct}=="2303", MODE:="0777", SYMLINK+="gps_com"
+KERNEL=="ttyTHS0", MODE:="0777", SYMLINK+="imu_com"
+KERNEL=="js*", ATTRS{idVendor}=="045e", ATTRS{idProduct}=="028e", SYMLINK="input/ps4"
+
+

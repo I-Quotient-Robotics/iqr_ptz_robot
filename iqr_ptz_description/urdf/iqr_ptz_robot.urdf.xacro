@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="iqr_ptz_robot">
+
+  <xacro:property name="package_name" value="iqr_ptz_description"/>
+
+  <!-- Include Jackal -->
+  <include filename="$(find jackal_description)/urdf/jackal.urdf.xacro"/>
+
+  <!-- Include accessories -->
+  <xacro:include filename="$(find ${package_name})/urdf/gps_antenna.xacro"/>
+  <xacro:include filename="$(find ${package_name})/urdf/axis_p56s.urdf.xacro"/>
+  <xacro:include filename="$(find ${package_name})/urdf/sensor_support.xacro"/>
+ 
+  <!-- IQR jackal support -->
+  <xacro:sensor_support package="${package_name}" parent="mid_mount">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:sensor_support>
+
+  <!-- GPS -->
+  <xacro:gps_antenna package="${package_name}" name="rtk" parent="rtk_gps_mount_link">
+    <origin xyz="0 0 0.010" rpy="0 0 0"/>
+  </xacro:gps_antenna>
+
+  <!-- PTZ camera -->
+  <xacro:axis_p56s package="${package_name}" parent="ptz_mount_link">
+    <origin xyz="0.0 0.0 -0.04736" rpy="0 3.1415926 3.1415926"/>
+  </xacro:axis_p56s>
+
+</robot>

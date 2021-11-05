@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="axis_p56s" description="axis p56xx serial net camera">
+
+  <xacro:macro name="axis_p56s" params="package parent *origin">
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="prefix" value="axis_p56s_"/>
+    <xacro:property name="frame_name" value="axis_camera"/>
+
+    <material name="axis_white">
+      <color rgba="0.8 0.8 0.8 2.0"/>
+    </material>
+
+    <joint name="${prefix}base_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${prefix}base_link"/>
+    </joint>
+    <link name="${prefix}base_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${package}/urdf/mesh/axis_p56s-B.stl"/>
+        </geometry>
+        <material name="axis_white"/>
+      </visual>
+    </link>
+
+    <link name="${prefix}yaw_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${package}/urdf/mesh/axis_p56s-P.stl"/>
+        </geometry>
+        <material name="axis_white"/>
+      </visual>
+    </link>
+    <joint name="${prefix}yaw_joint" type="continuous">
+      <origin xyz="0.0 0.0 -0.190" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}yaw_link"/>
+      <axis xyz="0 0 -1"/>
+    </joint>
+
+    <link name="${prefix}pitch_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${package}/urdf/mesh/axis_p56s-T.stl"/>
+        </geometry>
+        <material name="axis_white"/>
+      </visual>
+    </link>
+    <joint name="${prefix}pitch_joint" type="continuous">
+      <origin xyz="0.0 0.0 -0.040" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}yaw_link"/>
+      <child link="${prefix}pitch_link"/>
+      <axis xyz="0 -1 0"/>
+    </joint>
+
+    <link name="${frame_name}"/>
+    <joint name="${frame_name}_joint" type="fixed">
+      <origin xyz="0.020 0 0" rpy="0 0 0"/>
+      <parent link="${prefix}pitch_link"/>
+      <child link="${frame_name}"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sensor_support">
+
+  <xacro:macro name="sensor_support" params="package parent *origin">
+    <xacro:property name="prefix" value="sensor_support"/>
+
+    <!-- sensor support link -->
+    <link name="${prefix}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://${package}/urdf/mesh/sensor_support.stl"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.2 0.2 0.2 1"/>
+        </material>
+      </visual>
+    </link>
+    <joint name="${prefix}_link_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="${prefix}_link"/>
+    </joint>
+
+    <!-- rtk gps mount -->
+    <link name="rtk_gps_mount_link"/>
+    <joint name="rtk_gps_mount_link_joint" type="fixed">
+      <origin xyz="-0.1540535 0.0 0.15864381" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}_link"/>
+      <child link="rtk_gps_mount_link"/>
+    </joint>
+
+    <!-- ptz mount -->
+    <link name="ptz_mount_link"/>
+    <joint name="ptz_mount_link_joint" type="fixed">
+      <origin xyz="0.03594649 0.0 0.09664381" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}_link"/>
+      <child link="ptz_mount_link"/>
+    </joint>
+
+    <!-- custom imu link -->
+    <link name="custom_imu_link"/>
+    <joint name="custom_imu_link_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.016" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}_link"/>
+      <child link="custom_imu_link"/>
+    </joint>
+
+    <!-- laser link -->
+    <link name="laser_link"/>
+    <joint name="laser_link_joint" type="fixed">
+      <origin xyz="0.180 0.0 0.0654" rpy="0.0 0.0 0.0"/>
+      <parent link="${prefix}_link"/>
+      <child link="laser_link"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>
